@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>陈逸姝 - AI产品经理简历</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0a0c10;
+            --card-bg: #131720;
+            --card-hover: #1a1f2b;
+            --text-primary: #ffffff;
+            --text-secondary: #94a3b8;
+            --accent-cyan: #00f2ff;
+            --accent-purple: #bc13fe;
+            --accent-pink: #ff0055;
+            --border-color: rgba(255, 255, 255, 0.08);
+            --glass-bg: rgba(19, 23, 32, 0.7);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-secondary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        /* 动态背景光效 */
+        .bg-animation { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; overflow: hidden; }
+        .bg-animation .blob { position: absolute; border-radius: 50%; filter: blur(80px); opacity: 0.4; animation: float 15s infinite ease-in-out; }
+        .blob:nth-child(1) { width: 500px; height: 500px; background: var(--accent-purple); top: -100px; left: -100px; }
+        .blob:nth-child(2) { width: 400px; height: 400px; background: var(--accent-cyan); bottom: -100px; right: -100px; animation-delay: -5s; }
+        .blob:nth-child(3) { width: 300px; height: 300px; background: var(--accent-pink); top: 40%; left: 50%; animation-delay: -10s; }
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(50px, -50px) scale(1.1); }
+            66% { transform: translate(-30px, 30px) scale(0.9); }
+        }
+        .grid-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; background-image: linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px); background-size: 50px 50px; }
+        .container { max-width: 1000px; margin: 0 auto; padding: 40px 20px; }
+        /* Hero Section */
+        header { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; position: relative; }
+        .hero-content { position: relative; z-index: 2; }
+        .greeting { font-family: 'Space Grotesk', sans-serif; color: var(--accent-cyan); font-size: 1.2rem; letter-spacing: 2px; margin-bottom: 10px; opacity: 0; animation: fadeInUp 0.8s ease forwards; }
+        h1 { font-size: 4.5rem; font-weight: 900; color: var(--text-primary); line-height: 1.1; margin-bottom: 20px; background: linear-gradient(90deg, #fff, #94a3b8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; opacity: 0; animation: fadeInUp 0.8s ease 0.2s forwards; }
+        .role-title { font-size: 1.5rem; font-weight: 500; margin-bottom: 30px; height: 30px; opacity: 0; animation: fadeInUp 0.8s ease 0.4s forwards; }
+        .typing-text { color: var(--accent-purple); border-right: 2px solid var(--accent-purple); padding-right: 5px; animation: blink 0.8s infinite; }
+        /* 封面 Bubbles */
+        .bubbles-container { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; max-width: 600px; opacity: 0; animation: fadeInUp 0.8s ease 0.6s forwards; }
+        .bubble { background: var(--glass-bg); backdrop-filter: blur(10px); border: 1px solid var(--border-color); padding: 8px 16px; border-radius: 20px; font-size: 0.9rem; color: var(--text-primary); transition: all 0.3s ease; cursor: pointer; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); }
+        .bubble:hover { transform: translateY(-3px) scale(1.05); border-color: var(--accent-cyan); box-shadow: 0 0 15px rgba(0, 242, 255, 0.3); color: var(--accent-cyan); }
+        .bubble:nth-child(even) { animation: bubbleFloat 4s ease-in-out infinite; }
+        .bubble:nth-child(odd) { animation: bubbleFloat 5s ease-in-out infinite reverse; }
+        @keyframes bubbleFloat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+        .contact-info { display: flex; gap: 20px; flex-wrap: wrap; margin-top: 40px; opacity: 0; animation: fadeInUp 0.8s ease 0.8s forwards; }
+        .contact-item { display: flex; align-items: center; gap: 8px; background: var(--glass-bg); backdrop-filter: blur(10px); border: 1px solid var(--border-color); padding: 10px 20px; border-radius: 30px; transition: all 0.3s ease; }
+        .contact-item:hover { border-color: var(--accent-cyan); transform: translateY(-2px); box-shadow: 0 0 15px rgba(0, 242, 255, 0.2); }
+        .contact-item svg { width: 18px; height: 18px; fill: var(--accent-cyan); }
+        .scroll-down { position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%); color: var(--text-secondary); animation: bounce 2s infinite; }
+        /* 通用 Section */
+        section { margin-bottom: 80px; opacity: 0; transform: translateY(30px); transition: all 0.8s ease; }
+        section.revealed { opacity: 1; transform: translateY(0); }
+        .section-title { display: flex; align-items: center; gap: 15px; margin-bottom: 40px; }
+        .section-title h2 { font-size: 2rem; color: var(--text-primary); font-weight: 700; }
+        .section-title .line { flex-grow: 1; height: 1px; background: linear-gradient(90deg, var(--accent-purple), transparent); }
+        .section-title .icon { font-size: 1.8rem; }
+        /* 教育背景 */
+        .edu-card { background: var(--card-bg); border: 1px solid var(--border-color); padding: 25px; border-radius: 16px; transition: all 0.3s ease; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; }
+        .edu-card:hover { background: var(--card-hover); border-color: rgba(0, 242, 255, 0.3); }
+        .edu-info h3 { color: var(--text-primary); font-size: 1.4rem; margin-bottom: 5px; display: flex; align-items: center; gap: 10px;}
+        .edu-info p { color: var(--text-secondary); display: flex; align-items: center; gap: 6px;}
+        .edu-meta { text-align: right; }
+        .edu-meta .degree { color: var(--accent-cyan); font-weight: 500; margin-bottom: 5px; display: flex; align-items: center; gap: 6px; justify-content: flex-end;}
+        .edu-meta .date { font-family: 'Space Grotesk', sans-serif; color: var(--text-secondary); font-size: 0.9rem; }
+        /* 工作经历手风琴 */
+        .company-block { margin-bottom: 40px; }
+        .company-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 20px; border-bottom: 1px solid var(--border-color); padding-bottom: 10px; }
+        .company-name { font-size: 1.5rem; font-weight: 700; color: var(--text-primary); display: flex; align-items: center; gap: 10px; }
+        .company-role { color: var(--accent-cyan); font-size: 1rem; display: block; margin-top: 5px; }
+        .date-badge { background: rgba(188, 19, 254, 0.1); color: var(--accent-purple); padding: 4px 12px; border-radius: 20px; font-size: 0.85rem; font-family: 'Space Grotesk', sans-serif; border: 1px solid rgba(188, 19, 254, 0.3); }
+        .accordion-item { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 12px; margin-bottom: 12px; overflow: hidden; transition: all 0.3s ease; position: relative; }
+        .accordion-item:hover { border-color: rgba(0, 242, 255, 0.2); }
+        /* 点击 bubble 的高亮动画 */
+        @keyframes pulse-highlight {
+            0% { box-shadow: 0 0 0 0 rgba(0, 242, 255, 0.4); border-color: var(--accent-cyan); }
+            70% { box-shadow: 0 0 0 15px rgba(0, 242, 255, 0); border-color: var(--accent-cyan); }
+            100% { box-shadow: 0 0 0 0 rgba(0, 242, 255, 0); border-color: var(--border-color); }
+        }
+        .accordion-item.highlighted {
+            animation: pulse-highlight 1.5s ease-out 2;
+            z-index: 10;
+        }
+        .accordion-header { padding: 16px 20px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-weight: 500; color: var(--text-primary); transition: background 0.3s ease; }
+        .accordion-header:hover { background: var(--card-hover); }
+        .accordion-title { display: flex; align-items: center; gap: 10px; font-size: 1.05rem; flex-wrap: wrap;}
+        .accordion-title .tag { font-size: 0.65rem; background: rgba(255, 255, 255, 0.1); padding: 3px 8px; border-radius: 4px; color: var(--text-secondary); font-family: 'Space Grotesk', sans-serif; border: 1px solid rgba(255,255,255,0.05); }
+        .accordion-icon { width: 20px; height: 20px; position: relative; transition: transform 0.3s ease; flex-shrink: 0; }
+        .accordion-icon::before, .accordion-icon::after { content: ''; position: absolute; background: var(--accent-cyan); transition: all 0.3s ease; }
+        .accordion-icon::before { width: 100%; height: 2px; top: 9px; left: 0; }
+        .accordion-icon::after { width: 2px; height: 100%; left: 9px; top: 0; }
+        .accordion-item.active .accordion-icon::after { transform: rotate(90deg); opacity: 0; }
+        .accordion-item.active .accordion-header { color: var(--accent-cyan); }
+        .accordion-content { max-height: 0; overflow: hidden; transition: max-height 0.5s ease, padding 0.5s ease; padding: 0 20px; }
+        .accordion-item.active .accordion-content { max-height: 2000px; padding: 0 20px 20px 20px; }
+        .accordion-content ul { list-style: none; }
+        .accordion-content li { position: relative; padding-left: 25px; margin-bottom: 10px; font-size: 0.95rem; line-height: 1.7; }
+        .accordion-content li::before { content: '▹'; position: absolute; left: 5px; color: var(--accent-cyan); top: 0; }
+        .highlight { color: var(--accent-cyan); font-weight: 500; }
+        .highlight-p { color: var(--accent-purple); font-weight: 500; }
+        /* 个人项目 */
+        .game-card { background: linear-gradient(135deg, rgba(188, 19, 254, 0.1), rgba(0, 242, 255, 0.05)); border: 1px solid rgba(188, 19, 254, 0.3); padding: 25px; border-radius: 16px; position: relative; overflow: hidden; }
+        .game-card h3 { color: var(--text-primary); font-size: 1.3rem; margin-bottom: 15px; display: flex; align-items: center; gap: 10px;}
+        .game-card .tag { background: var(--accent-purple); color: white; padding: 2px 8px; border-radius: 4px; font-size: 0.7rem; margin-left: 10px; vertical-align: middle; }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes blink { 0%, 100% { border-color: var(--accent-purple); } 50% { border-color: transparent; } }
+        @keyframes bounce { 0%, 20%, 50%, 80%, 100% { transform: translateY(0) translateX(-50%); } 40% { transform: translateY(-10px) translateX(-50%); } 60% { transform: translateY(-5px) translateX(-50%); } }
+        @media (max-width: 768px) {
+            h1 { font-size: 2.5rem; }
+            .company-header { flex-direction: column; align-items: flex-start; }
+            .edu-card { flex-direction: column; align-items: flex-start; gap: 10px; }
+            .edu-meta { text-align: left; }
+            .edu-meta .degree { justify-content: flex-start; }
+            .accordion-title { font-size: 0.9rem; }
+            .accordion-title .tag { display: none; } /* 移动端隐藏tag以免折行严重 */
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-animation">
+        <div class="blob"></div>
+        <div class="blob"></div>
+        <div class="blob"></div>
+    </div>
+    <div class="grid-overlay"></div>
+    <div class="container">
+        <header>
+            <div class="hero-content">
+                <p class="greeting"></p>
+                <h1>陈逸姝</h1>
+                <div class="role-title">
+                    <span class="typing-text" id="typingText"></span>
+                </div>
+                <!-- 能力 Bubbles (带有 data-target 属性) -->
+                <div class="bubbles-container">
+                    <div class="bubble" data-target="proj-agent">🚀 AI Native 0-1 落地</div>
+                    <div class="bubble" data-target="proj-agent">🤖 Agent 工作流设计</div>
+                    <div class="bubble" data-target="proj-rag">🛡 RAG架构与幻觉治理</div>
+                    <div class="bubble" data-target="proj-rag">⚡ Prompt Engineering</div>
+                    <div class="bubble" data-target="proj-router">🌐 复杂B端流程再造</div>
+                    <div class="bubble" data-target="proj-alibaba-data">💰 金融科技与数据中台</div>
+                    <div class="bubble" data-target="proj-alibaba-data">📊 SQL与数据驱动决策</div>
+                    <div class="bubble" data-target="proj-rag">🔄 数据飞轮闭环构建</div>
+                    <div class="bubble" data-target="proj-bytedance">🛠 API与微服务架构理解</div>
+                </div>
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                        susan.825@hotmail.com
+                    </div>
+                    <div class="contact-item">
+                        <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+                        +86 138 0608 3599
+                    </div>
+                </div>
+            </div>
+            <div class="scroll-down">
+                <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
+            </div>
+        </header>
+        <!-- 教育背景 -->
+        <section id="education">
+            <div class="section-title">
+                <span class="icon">🎓</span>
+                <h2>教育背景</h2>
+                <div class="line"></div>
+            </div>
+            <div class="edu-card">
+                <div class="edu-info">
+                    <h3>🏛️ 香港大学</h3>
+                    <p>🏅 一等荣誉毕业</p>
+                </div>
+                <div class="edu-meta">
+                    <div class="degree">💻 理学硕士（计算机科学 - 通用方向）</div>
+                    <div class="degree">💸 工商管理学学士（会计与金融方向）</div>
+                    <div class="date">📅 2016.09 – 2022.03</div>
+                </div>
+            </div>
+        </section>
+        <!-- 工作经历 -->
+        <section id="experience">
+            <div class="section-title">
+                <span class="icon">💼</span>
+                <h2>工作经历</h2>
+                <div class="line"></div>
+            </div>
+            <!-- Shopee -->
+            <div class="company-block">
+                <div class="company-header">
+                    <div>
+                        <div class="company-name">🦐 Shopee（虾皮）</div>
+                        <span class="company-role">资深财务产品经理 · 供应链 | 深圳</span>
+                    </div>
+                    <span class="date-badge">2024.07 – 2026.03</span>
+                </div>
+                <div class="accordion-item active">
+                    <div class="accordion-header">
+                        <div class="accordion-title">📋 核心职责 <span class="tag">Overview</span></div>
+                        <div class="accordion-icon"></div>
+                    </div>
+                    <div class="accordion-content">
+                        <ul>
+                            <li>负责拉美与东南亚两大业务领域、六条业务线的财税线上化与 AI 智能化转型，主导跨国复杂系统建设。</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="accordion-item" id="proj-agent">
+                    <div class="accordion-header">
+                        <div class="accordion-title"> 
+                            🤖 AI Agent 系统设计与业务流程再造（巴西发票 AI 助手） 
+                            <span class="tag">AI Native</span>
+                            <span class="tag">Agent协同</span>
+                            <span class="tag">风控设计</span>
+                            <span class="tag">人机协同</span>
+                        </div>
+                        <div class="accordion-icon"></div>
+                    </div>
+                    <div class="accordion-content">
+                        <ul>
+                            <li><span class="highlight-p">🎯 场景洞察：</span> 针对巴西税务法规复杂、卖家因发票报错导致订单超时取消的痛点，设计并落地“事前提醒+事后协助”的完整 AI 闭环。</li>
+                            <li><span class="highlight-p">⚙️ 人机协同与 Agent 工作流设计：</span> 开票遇到事后政府报错时，设计多 Agent 协同处理机制（Agent A/B 提取报错并交叉验证，Agent C 负责一致性校验），提供报错信息解读+建议修改值答案。</li>
+                            <li><span class="highlight-p">🛡️ 风控与效果：</span> 若答案一致则直接透出给卖家，不一致则触发运营人工审批。通过人机协同+review机制实现卖家辅助准确度95%+），大幅降低人工客诉。</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="accordion-item" id="proj-rag">
+                    <div class="accordion-header">
+                        <div class="accordion-title"> 
+                            📚 财务 AI RAG 助手 
+                            <span class="tag">RAG架构</span>
+                            <span class="tag">幻觉治理</span>
+                            <span class="tag">Prompt工程</span>
+                            <span class="tag">数据飞轮</span>
+                        </div>
+                        <div class="accordion-icon"></div>
+                    </div>
+                    <div class="accordion-content">
+                        <ul>
+                            <li><span class="highlight-p">🏗️ 系统搭建与端到端交付：</span> 主导从0到1构建企业级财务知识库问答系统，运用 Vector DB 与分段 Chunking 策略，将代码库、PRD 及历史逻辑向量化入库。</li>
+                            <li><span class="highlight-p">🧠 技术理解与幻觉治理：</span> 通过利用AI迭代 Prompt 模板、补充 Few-shot 示例、强制引用 chunk meta URL 等策略，有效解决 LLM 编造引用源（幻觉）问题。</li>
+                            <li><span class="highlight-p">🔄 数据飞轮闭环：</span> 设计包含自动跑 Eval 集与人工抽检的评估体系，建立 Bad Case 自动归因闭环，实现产品自进化。项目上线后月均活跃用户达 20+，满意度稳定在 77% 以上。</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="accordion-item" id="proj-billing">
+                    <div class="accordion-header">
+                        <div class="accordion-title"> 
+                            🧩 模块化计费配置系统 
+                            <span class="tag">系统重构</span>
+                            <span class="tag">效能提升</span>
+                            <span class="tag">B端配置化</span>
+                        </div>
+                        <div class="accordion-icon"></div>
+                    </div>
+                    <div class="accordion-content">
+                        <ul>
+                            <li><span class="highlight-p">⚡ 配置化升级：</span> 将定制化计费规则按照要素拆分为模块，使强依赖代码开发的定制能力升级为“0代码灵活配置”系统。</li>
+                            <li><span class="highlight-p">📈 效能提升：</span> 开发与验收周期从 2-3 个月压缩至 2 周，研发效能提升 60%+。</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="accordion-item" id="proj-router">
+                    <div class="accordion-header">
+                        <div class="accordion-title"> 
+                            💱 多币种智能结算路由 
+                            <span class="tag">复杂B端</span>
+                            <span class="tag">风控平衡</span>
+                            <span class="tag">路由闭环</span>
+                        </div>
+                        <div class="accordion-icon"></div>
+                    </div>
+                    <div class="accordion-content">
+                        <ul>
+                            <li><span class="highlight-p">🔄 复杂业务重塑：</span> 在全托管结算体系中，面对资金预测缺失、账户余额不足导致支付失败的问题，建立包含结算资金预测、币种规划、支付重试及降级补偿的完整路由闭环。</li>
+                            <li><span class="highlight-p">⚖️ 效率与风控平衡：</span> 配合规则引擎，在保障境内供应商优先人民币结算和 100% 成功率的前提下，极大提升集团人民币资金利用率，每年节省资金成本数百万元。</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="accordion-item" id="proj-recon">
+                    <div class="accordion-header">
+                        <div class="accordion-title"> 
+                            ⚖️ 物流平台对账系统 
+                            <span class="tag">风控对账</span>
+                            <span class="tag">系统化对账</span>
+                            <span class="tag">资损防范</span>
+                        </div>
+                        <div class="accordion-icon"></div>
+                    </div>
+                    <div class="accordion-content">
+                        <ul>
+                            <li><span class="highlight-p">📊 系统化对账：</span> 设计配置化三方对账流程（买家运费 × 卖家运费 × 3PL 运费）。</li>
+                            <li><span class="highlight-p">🛡️ 资损防范：</span> 将大量人工核对的账单差异转化为可归因、可追踪、可复盘的系统化对账流程，有效防止资损风险。</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="accordion-item" id="proj-prd">
+                    <div class="accordion-header">
+                        <div class="accordion-title"> 
+                            📝 产品PRD助手 
+                            <span class="tag">AI赋能</span>
+                            <span class="tag">风险敞口</span>
+                            <span class="tag">产研效能</span>
+                        </div>
+                        <div class="accordion-icon"></div>
+                    </div>
+                    <div class="accordion-content">
+                        <ul>
+                            <li><span class="highlight-p">🚀 拓展能力边界：</span> 通过AI协助评估产品方案的技术复杂度，提升产品对业务需求的反馈速度，显著提升产研合作效率。</li>
+                            <li><span class="highlight-p">🛡️ 缩小产品风险敞口：</span> 通过AI建设PRD评估框架，有效提升风险管理水平，降低需求上线资损风险。</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- Alibaba -->
+            <div class="company-block">
+                <div class="company-header">
+                    <div>
+                        <div class="company-name">🛒 阿里巴巴（淘天集团）</div>
+                        <span class="company-role">财务数据分析产品经理 · 数据中台 | 杭州</span>
+                    </div>
+                    <span class="date-badge">2022.04 – 2024.05</span>
+                </div>
+                <p style="margin-bottom: 15px; color: var(--accent-cyan); display: flex; align-items: center; gap: 8px;">🏆 2022双十一表现之星</p>
+                <div class="accordion-item active">
+                    <div class="accordion-header">
+                        <div class="accordion-title">📋 核心职责 <span class="tag">Overview</span></div>
+                        <div class="accordion-icon"></div>
+                    </div>
+                    <div class="accordion-content">
+                        <ul>
+                            <li>负责0-1天猫国际自营业务财务数据分析平台（覆盖采购、销售、物流、营销全链路）。</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="accordion-item" id="proj-alibaba-data">
+                    <div class="accordion-header">
+                        <div class="accordion-title"> 
+                            📊 自营财务分析产品建设 
+                            <span class="tag">数据平台</span>
+                            <span class="tag">指标体系</span>
+                            <span class="tag">SQL探索</span>
+                            <span class="tag">归因分析</span>
+                        </div>
+                        <div class="accordion-icon"></div>
+                    </div>
+                    <div class="accordion-content">
+                        <ul>
+                            <li><span class="highlight">📐 指标体系搭建：</span> 围绕"利润增长"和"投入产出效率"建立覆盖五大维度的经营分析框架——商品毛利归因、履约成本归因、场域分析、人群分析、供应商分析。</li>
+                            <li><span class="highlight">🔍 归因分析设计：</span>
+                                <ul style="margin-top: 8px; padding-left: 15px; list-style: none;">
+                                    <li style="margin-bottom: 5px;">✔️ <strong>商品毛利归因</strong>拆分为到手价归因（营销优惠 × 渠道定价）和采购价归因（原币价 × 币种结构 × 汇率波动），将"成本高了"转化为可解释、可行动的决策建议。</li>
+                                    <li>✔️ <strong>履约成本归因</strong>拆解为仓储、配送、增值服务、库内操作等模块，结合运距、包裹重量、同区发货率等动因做多变量分析。</li>
+                                </ul>
+                            </li>
+                            <li><span class="highlight">💡 数据驱动决策：</span> 基于SQL进行深度数据探索，设计供应商采购成本、返利分析工具，有效挖掘百万元级利润潜力。</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="accordion-item" id="proj-allocation">
+                    <div class="accordion-header">
+                        <div class="accordion-title"> 
+                            🤖 成本分摊机制 
+                            <span class="tag">AI驱动</span>
+                            <span class="tag">流程配置化</span>
+                            <span class="tag">效能提升</span>
+                        </div>
+                        <div class="accordion-icon"></div>
+                    </div>
+                    <div class="accordion-content">
+                        <ul>
+                            <li><span class="highlight">⚙️ 流程配置化：</span> 统一管理待摊成本的归集、分摊和口径，设计多步骤、多轮次的配置流程。</li>
+                            <li><span class="highlight">✨ AI 引入：</span> 引入 AI 推荐分摊驱动因子，提升研发人效 50%。</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="accordion-item" id="proj-warning">
+                    <div class="accordion-header">
+                        <div class="accordion-title"> 
+                            🚨 资损预警中心 
+                            <span class="tag">风控系统</span>
+                            <span class="tag">自动化触达</span>
+                            <span class="tag">事中止损</span>
+                        </div>
+                        <div class="accordion-icon"></div>
+                    </div>
+                    <div class="accordion-content">
+                        <ul>
+                            <li><span class="highlight">🛡️ 系统设计：</span> 设计可配置的自动化预警系统，支持用户自定义预警范围、规则和触发时间，敏锐识别业务日常潜藏的亏损风险。</li>
+                            <li><span class="highlight">📩 触达机制：</span> 每天早上自动通过钉钉触达对应负责人、群聊，将资损治理从事后追损前移到事中及时止损。</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="accordion-item" id="proj-simulation">
+                    <div class="accordion-header">
+                        <div class="accordion-title"> 
+                            🔮 仿真/测算产品 
+                            <span class="tag">预测建模</span>
+                            <span class="tag">事前风控</span>
+                            <span class="tag">量化比选</span>
+                        </div>
+                        <div class="accordion-icon"></div>
+                    </div>
+                    <div class="accordion-content">
+                        <ul>
+                            <li><span class="highlight">📈 损益测算：</span> 结合算法销量预测、营销优惠预算、历史成本数据设计多数据源融合的损益预测模型，在多重变量下将事后追损转化为事前/风险控制机制，在双11期间有效帮助业务提升毛利率 0.1+pt。</li>
+                            <li><span class="highlight">🚚 履约成本仿真：</span> 设计合同仿真、切仓仿真、切承运商仿真三种模式，覆盖新财年报价、不同承运商、仓网规划等场景，将经验判断转化为可量化的比选工具，支持多次业务决策，准确率90%+。</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- 实习经历 -->
+            <div class="company-block">
+                <div class="company-header">
+                    <div>
+                        <div class="company-name">实习经历</div>
+                        <span class="company-role">测试开发 & 商业分析</span>
+                    </div>
+                    <span class="date-badge">2019 – 2021</span>
+                </div>
+                <div class="accordion-item" id="proj-bytedance">
+                    <div class="accordion-header">
+                        <div class="accordion-title"> 
+                            🐛 字节跳动 | 测试开发工程师（实习） · 核心广告系统 
+                            <span class="tag">Tech</span>
+                            <span class="tag">API自动化</span>
+                            <span class="tag">系统稳定</span>
+                        </div>
+                        <div class="accordion-icon"></div>
+                    </div>
+                    <div class="accordion-content">
+                        <ul>
+                            <li><span class="highlight">🛠️ 系统稳定性保障：</span> 独立开发广告数据分析产品前端与后端接口的自动化测试脚本（JavaScript, Python/测试开发框架），保障复杂系统稳定性（测试稳定率达95%），具备良好的技术底层实践能力。</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="accordion-item" id="proj-prive">
+                    <div class="accordion-header">
+                        <div class="accordion-title"> 
+                            💼 Prive Technologies | Fintech商业分析师（实习） · 战略部 
+                            <span class="tag">Fintech</span>
+                            <span class="tag">财务模型</span>
+                            <span class="tag">产品Demo</span>
+                        </div>
+                        <div class="accordion-icon"></div>
+                    </div>
+                    <div class="accordion-content">
+                        <ul>
+                            <li><span class="highlight">🏦 融资财务模型搭建：</span> 独立负责B轮财务模型搭建，分析亚洲总部、欧洲分部公司收入、成本构成，根据销售预期测算未来收入，结合市场机会挖掘降本机会。</li>
+                            <li><span class="highlight">📱 金融科技产品demo设计：</span> 协助Fintech 产品售前沟通，包括智能投顾，语音文本互转产品，财富管理生态系统等产品demo打磨优化。</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- 个人项目 -->
+        <section id="projects">
+            <div class="section-title">
+                <span class="icon">🚀</span>
+                <h2>个人 AI 项目作品</h2>
+                <div class="line"></div>
+            </div>
+            <div class="game-card">
+                <h3>🎮 微信小游戏《最强登山家》 <span class="tag">Personal Project</span></h3>
+                <ul style="list-style: none; margin-top: 15px;">
+                    <li style="margin-bottom: 10px;"><strong>💻 全栈 AI 开发：</strong> 保持对前沿 AI 技术的敏感度，独立利用 LLM 工具进行完整的代码生成、架构设计与调试验证，实现从 0 到 1 的产品端到端交付。</li>
+                    <li style="margin-bottom: 10px;"><strong>🎨 多模态工具落地：</strong> 熟练掌握 Prompt 提示工程，运用 Nano Banana 批量生成符合地理设定的场景与状态 UI 素材，并运用 Suno AI 创作适配情境的音乐，验证了 AI 在工作流提效中的极大潜力。</li>
+                    <li><strong>🏗️ 复杂系统架构设计：</strong> 独立完成了包含动态天气引擎、双数值波动（体力/体温）、Roguelike 随机事件及微服务计算等复杂游戏机制的逻辑搭建。</li>
+                </ul>
+            </div>
+        </section>
+    </div>
+    <script>
+        // 打字机效果
+        const titles = ["AI Product Manager", "From 0 to 1 AI Native Builder", "Financial & Data Product Expert"];
+        let titleIndex = 0, charIndex = 0, isDeleting = false;
+        const typingElement = document.getElementById('typingText');
+        function typeEffect() {
+            const currentTitle = titles[titleIndex];
+            if (isDeleting) {
+                typingElement.textContent = currentTitle.substring(0, charIndex - 1);
+                charIndex--;
+            } else {
+                typingElement.textContent = currentTitle.substring(0, charIndex + 1);
+                charIndex++;
+            }
+            let typeSpeed = isDeleting ? 50 : 100;
+            if (!isDeleting && charIndex === currentTitle.length) {
+                typeSpeed = 2000; isDeleting = true;
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false; titleIndex = (titleIndex + 1) % titles.length; typeSpeed = 500;
+            }
+            setTimeout(typeEffect, typeSpeed);
+        }
+        setTimeout(typeEffect, 1000);
+        // 滚动显现动画
+        const sections = document.querySelectorAll('section');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('revealed');
+            });
+        }, { threshold: 0.1 });
+        sections.forEach(section => observer.observe(section));
+        // 手风琴点击逻辑
+        const accordionItems = document.querySelectorAll('.accordion-item');
+        accordionItems.forEach(item => {
+            item.querySelector('.accordion-header').addEventListener('click', () => {
+                item.classList.toggle('active');
+            });
+        });
+        // 鼠标移动光效跟随
+        document.addEventListener('mousemove', (e) => {
+            const x = (e.clientX / window.innerWidth - 0.5) * 20;
+            const y = (e.clientY / window.innerHeight - 0.5) * 20;
+            document.querySelector('.blob:nth-child(1)').style.transform = `translate(${x}px, ${y}px)`;
+            document.querySelector('.blob:nth-child(2)').style.transform = `translate(${-x}px, ${-y}px)`;
+        });
+        // Bubble 点击定位和高亮逻辑
+        document.querySelectorAll('.bubble').forEach(bubble => {
+            bubble.addEventListener('click', () => {
+                const targetId = bubble.getAttribute('data-target');
+                const targetElement = document.getElementById(targetId);
+                if (targetElement) {
+                    // 1. 展开目标手风琴
+                    targetElement.classList.add('active');
+                    // 2. 延迟一点执行滚动，确保DOM已经更新高度
+                    setTimeout(() => {
+                        targetElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                        // 3. 移除之前的 highlighted 类（如果有），强制重绘后添加高亮类
+                        targetElement.classList.remove('highlighted');
+                        void targetElement.offsetWidth; 
+                        targetElement.classList.add('highlighted');
+                        // 4. 一段时间后移除高亮类
+                        setTimeout(() => {
+                            targetElement.classList.remove('highlighted');
+                        }, 3000); // 闪烁动画播放2次(1.5s * 2)
+                    }, 100);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
