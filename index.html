@@ -294,6 +294,111 @@
                     负责拉美与东南亚两大业务领域、六条业务线的财税线上化与 AI 智能化转型，主导跨国复杂系统建设。
                 </div>
 
+                <!-- ===== Business Scope 豆腐块图 ===== -->
+                <style>
+                    .scope-wrap{margin:14px 0 16px;}
+                    .scope-hd{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;}
+                    .scope-hd .stitle{font-size:0.8rem;font-weight:700;color:var(--text-primary);letter-spacing:0.5px;}
+                    .scope-hd .stitle em{font-style:italic;color:#ee4d2d;}
+                    .scope-hd .smkt{display:flex;gap:3px;flex-wrap:wrap;justify-content:flex-end;}
+                    .scope-hd .smtag{padding:1px 6px;background:rgba(255,255,255,0.06);border:1px solid var(--border-color);border-radius:3px;font-size:0.6rem;font-weight:600;color:var(--text-secondary);white-space:nowrap;font-family:'Space Grotesk',sans-serif;}
+                    .scope-hd .smtag.on{background:rgba(238,77,45,0.15);color:#ee4d2d;border-color:rgba(238,77,45,0.3);}
+                    .scope-cards{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;}
+                    .scope-card{background:var(--card-bg);border:1px solid var(--border-color);border-radius:8px;overflow:hidden;display:flex;flex-direction:column;position:relative;transition:all 0.3s ease;}
+                    .scope-card:hover{border-color:rgba(255,255,255,0.15);background:var(--card-hover);transform:translateY(-2px);}
+                    .scope-card .sband{height:3px;flex-shrink:0;}
+                    .scope-card .snum{position:absolute;top:8px;right:8px;font-size:1.6rem;font-weight:900;color:rgba(255,255,255,0.04);line-height:1;font-family:'Space Grotesk',sans-serif;z-index:0;}
+                    .scope-card .slabel{padding:6px 10px 0 10px;font-size:0.55rem;font-weight:700;letter-spacing:0.6px;text-transform:uppercase;font-family:'Space Grotesk',sans-serif;z-index:1;position:relative;}
+                    .scope-card .stt{padding:1px 10px 0 10px;position:relative;z-index:1;}
+                    .scope-card .stt .cn{font-size:0.72rem;font-weight:700;color:var(--text-primary);line-height:1.3;}
+                    .scope-card .stt .en{font-size:0.52rem;color:var(--text-secondary);margin-top:1px;line-height:1.3;}
+                    .scope-card .sdiv{margin:5px 10px 4px 10px;height:1px;background:var(--border-color);}
+                    .scope-card .sitems{padding:0 10px 8px 10px;flex:1;}
+                    .scope-card .si{padding:2px 0;display:flex;align-items:flex-start;gap:4px;line-height:1.4;}
+                    .scope-card .si .sbt{flex-shrink:0;width:3px;height:3px;border-radius:50%;margin-top:5px;}
+                    .scope-card .si .scat{font-size:0.6rem;font-weight:700;color:var(--text-primary);white-space:nowrap;}
+                    .scope-card .si .ssep{font-size:0.6rem;color:rgba(255,255,255,0.15);margin:0 1px;}
+                    .scope-card .si .sdesc{font-size:0.6rem;color:var(--text-secondary);}
+                    .scope-card .si .snew{display:inline-block;margin-left:2px;padding:0 3px;font-size:0.45rem;font-weight:700;border-radius:2px;background:#ee4d2d;color:#fff;vertical-align:1px;font-family:'Space Grotesk',sans-serif;}
+                    .sc1 .sband{background:#A3E635;} .sc1 .slabel{color:#84CC16;} .sc1 .si .sbt{background:#A3E635;}
+                    .sc2 .sband{background:#FBBF24;} .sc2 .slabel{color:#F59E0B;} .sc2 .si .sbt{background:#FBBF24;}
+                    .sc3 .sband{background:#2DD4BF;} .sc3 .slabel{color:#14B8A6;} .sc3 .si .sbt{background:#2DD4BF;}
+                    .sc4 .sband{background:#F472B6;} .sc4 .slabel{color:#EC4899;} .sc4 .si .sbt{background:#F472B6;}
+                    .scope-foot{margin-top:6px;font-size:0.55rem;color:var(--text-secondary);display:flex;align-items:center;gap:4px;}
+                    .scope-foot .ftag{padding:0 3px;background:#ee4d2d;color:#fff;border-radius:2px;font-weight:700;font-size:0.45rem;font-family:'Space Grotesk',sans-serif;}
+                    @media(max-width:768px){.scope-cards{grid-template-columns:1fr 1fr;}.scope-hd{flex-direction:column;align-items:flex-start;gap:6px;}.scope-hd .smkt{justify-content:flex-start;}}
+                </style>
+                <div class="scope-wrap">
+                    <div class="scope-hd">
+                        <div class="stitle">Business <em>Scope</em> · 六条业务线</div>
+                        <div class="smkt">
+                            <span class="smtag on">CB</span>
+                            <span class="smtag">ID</span>
+                            <span class="smtag">MY</span>
+                            <span class="smtag">VN</span>
+                            <span class="smtag">TH</span>
+                            <span class="smtag">SG</span>
+                            <span class="smtag">PH</span>
+                            <span class="smtag">BR</span>
+                        </div>
+                    </div>
+                    <div class="scope-cards">
+                        <div class="scope-card sc1">
+                            <div class="sband"></div>
+                            <div class="snum">01</div>
+                            <div class="slabel">SBS · DISTRIBUTION</div>
+                            <div class="stt"><div class="cn">本地经销 & 跨境快时尚</div><div class="en">Local Distribution / Fast Fashion</div></div>
+                            <div class="sdiv"></div>
+                            <div class="sitems">
+                                <div class="si"><span class="sbt"></span><span class="scat">货款计费结算</span><span class="ssep">·</span><span class="sdesc">采购货款发票核验、对账</span></div>
+                                <div class="si"><span class="sbt"></span><span class="scat">返利计算</span><span class="ssep">·</span><span class="sdesc">活动返利计算、账单推送</span></div>
+                            </div>
+                        </div>
+                        <div class="scope-card sc2">
+                            <div class="sband"></div>
+                            <div class="snum">02</div>
+                            <div class="slabel">SBS · FULL MANAGEMENT</div>
+                            <div class="stt"><div class="cn">跨境 & 本地全托管</div><div class="en">Cross-border / Local Fully-Managed</div></div>
+                            <div class="sdiv"></div>
+                            <div class="sitems">
+                                <div class="si"><span class="sbt"></span><span class="scat">货款计算</span><span class="ssep">·</span><span class="sdesc">以销定结、FIFO确认成本</span></div>
+                                <div class="si"><span class="sbt"></span><span class="scat">返利计算</span><span class="ssep">·</span><span class="sdesc">供货商返利计算</span></div>
+                                <div class="si"><span class="sbt"></span><span class="scat">物流服务费</span><span class="ssep">·</span><span class="sdesc">平台服务费计费</span></div>
+                                <div class="si"><span class="sbt"></span><span class="scat">罚金计算</span><span class="ssep">·</span><span class="sdesc">SLA/质量/违规扣款</span></div>
+                                <div class="si"><span class="sbt"></span><span class="scat">结算单推送</span><span class="ssep">·</span><span class="sdesc">供货商对账单</span><span class="new">NEW</span></div>
+                            </div>
+                        </div>
+                        <div class="scope-card sc3">
+                            <div class="sband"></div>
+                            <div class="snum">03</div>
+                            <div class="slabel">FBS · WAREHOUSING</div>
+                            <div class="stt"><div class="cn">仓储业务</div><div class="en">Fulfilled By Shopee</div></div>
+                            <div class="sdiv"></div>
+                            <div class="sitems">
+                                <div class="si"><span class="sbt"></span><span class="scat">仓储费计费</span><span class="ssep">·</span><span class="sdesc">按体积/天计费</span></div>
+                                <div class="si"><span class="sbt"></span><span class="scat">操作费计费</span><span class="ssep">·</span><span class="sdesc">入库/出库/拣货/调拨</span></div>
+                                <div class="si"><span class="sbt"></span><span class="scat">增值服务费计费</span><span class="ssep">·</span><span class="sdesc">贴标/拆包/卸货/换标/再包装</span></div>
+                                <div class="si"><span class="sbt"></span><span class="scat">罚金计费</span><span class="ssep">·</span><span class="sdesc">滞销/超期/违规</span></div>
+                                <div class="si"><span class="sbt"></span><span class="scat">发票开具</span><span class="ssep">·</span><span class="sdesc">Shopee/代卖家开票</span></span></div>
+                            </div>
+                        </div>
+                        <div class="scope-card sc4">
+                            <div class="sband"></div>
+                            <div class="snum">04</div>
+                            <div class="slabel">SLS · LOGISTICS</div>
+                            <div class="stt"><div class="cn">物流平台业务</div><div class="en">Shopee Logistics Service</div></div>
+                            <div class="sdiv"></div>
+                            <div class="sitems">
+                                <div class="si"><span class="sbt"></span><span class="scat">正逆向运费</span><span class="ssep">·</span><span class="sdesc">买家/卖家/3PL</span></div>
+                                <div class="si"><span class="sbt"></span><span class="scat">以旧换新</span><span class="ssep">·</span><span class="sdesc">Trade-in佣金/利润计算</span></div>
+                                <div class="si"><span class="sbt"></span><span class="scat">罚金</span><span class="ssep">·</span><span class="sdesc">时效/丢件/异常</span></div>
+                                <div class="si"><span class="sbt"></span><span class="scat">理赔费用</span><span class="ssep">·</span><span class="sdesc">丢损/延误赔付</span></div>
+                                <div class="si"><span class="sbt"></span><span class="scat">3PL对账结算</span><span class="ssep">·</span><span class="sdesc">承运商费用</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <!-- P1: FBS模块化计费配置系统 -->
                 <div class="accordion-item" id="proj-billing">
                     <div class="accordion-header">
@@ -452,7 +557,7 @@
                             <li><span class="highlight-p">📈 成本优化：</span>大幅降低物流成本支出，有效提升仓网效率，优化成本 10000+ BRL/日。</li>
                         </ul>
                         <div class="mermaid-container">
-                            <div class="diagram-label">⬅️ 优化前：开票 → 发货</div>
+                            <div class="diagram-label">⬅️ 优化前：开票 → 发货，不可换仓</div>
                             <pre class="mermaid">sequenceDiagram
     participant Listing as Listing
     participant CS as C&S
